@@ -1,5 +1,5 @@
 // Constants 
-var rom_code = '0d4f6bd7-3a51-11e7-ae4c-5b62a123505b';
+var rom_code = '';
 var status_channel = '';
 
 var version = 'v2.4';
