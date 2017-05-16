@@ -18,8 +18,8 @@ Pyobot v2.4 in portable form.
 ### Filter Syntax
 - `allTarget`, `secondTarget` and `highTarget` have keys dex numbers and values channel names (according to what names you register in `channels`.
 - `allIV`, `secondIV` and `highIV` have keys dex numbers and values IV filters (in the deficit from 45 format -- i.e. 0 = 100%, -1 = 44/45 = 98%, -2 = 43/45 = 96%, ... , -45 = 0/45 = 0%).
-- `allTarget` is for your default channels for each species. If no `allIV` is specified, it will post all of that species to that channel; else, it will filter according to `allIV`.
-- `secondTarget` is for posting to a different channel with more restrictive filtering -- e.g. high IV Larvitar where `allTarget` handles all Larvitar. `secondIV` must be more restrictive than `allIV`; if it's not specified, the filter will be the same as the one on `allTarget`.
+- `allTarget` is for your default channels for each species (if the species isn't specified, it won't be posted). If no `allIV` is specified, it will post all of that species to that channel; else, it will filter according to `allIV`.
+- `secondTarget` is for posting to a different channel with more restrictive filtering (if the species isn't specified, it won't be posted to a second channel) -- e.g. high IV Larvitar where `allTarget` handles all Larvitar. `secondIV` must be more restrictive than `allIV`; if it's not specified, the filter will be the same as the one on `allTarget`.
 - If `highchannel` is specified (i.e. not `""`), all perfect mons are posted to `highchannel`. This must be left `""` to disable this feature.
 - `highIV` handles exceptions to `highchannel`, but that's a niche use I won't bother documenting for now.
 
