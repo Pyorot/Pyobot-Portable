@@ -29,7 +29,7 @@ Everyone should be around to share tokens, keys, URLS and the like during the pr
 - If `highchannel` is specified (i.e. not `""`), all perfect mons are posted to `highchannel`. This must be left `""` to disable this feature.
 - `highIV` handles exceptions to `highchannel`, but that's a niche use I won't bother documenting for now.
 
-### Running The Bot (for bot runner)
+### Running the bot (for bot runner)
 (Requires Desktop/Laptop to be always on.)
 1. Open a tab of LondonPogoMap.
 2. Click Filter, then set the in-map filter to 100%.
