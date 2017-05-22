@@ -1,5 +1,5 @@
-// Constants 
-var rom_code = '';
+// Constants
+var rom_code = '0d4f6bd7-3a51-11e7-ae4c-5b62a123505b';
 var status_channel = '';
 
 var version = 'v2.4';
@@ -7,6 +7,21 @@ var rom = {};
 var iv = Array.apply(null, new Array(252)).map(Number.prototype.valueOf,1);
 var known = []; // keeps track of Pokemon already notified
 var overload = 0; // tracks Discord notification overload
+
+// 0) Discord gateway
+function DiscordGateway() {
+	var ws = new WebSocket('wss://gateway.discord.gg');
+	gateway = JSON.stringify({
+		"op": 2,
+		"d": {
+			"token": rom.keys.bot,
+			"properties": {"$os": "linux", "$browser": "sometestingbrowser", "$device": "sometestingdevice", "$referrer": "", "$referring_domain": "",},
+			"compress": true,
+			"large_threshold": 250,
+		}
+	});
+	setTimeout(function(){ws.send(gateway)}, 2 * 1000);
+}
 
 
 // 1) converts timecodes into legible times (call with no parameter for time now)
@@ -150,16 +165,18 @@ function mail(list) {
 
 // A) updates ROM from internet and refreshes Discord connection (every 20 minutes)
 function load() {
+// Discord gateway
+	DiscordGateway();
 // sets map filters (IV filter = 100%; select all)
 	min_iv = 100; for (i = 1, len = 252; i < len; i++) {localStorage.setItem(i,1)};
 // clears expired Pokemon
 	j = known.length; while(j--){ if (known[j].remainingTime() < 0) {known.splice(j,1)} };
 // updates ROM and IV filter
-	ROMUpdate();
+	setTimeout(ROMUpdate, 4 * 1000);
 // checks overload and posts OK status
 	var stat = version+' | '+rom.changelog+' | '+time()+' | '+known.length;
 	if (overload != 0) {stat += (' | overload: ' + overload); overload = 0;};
-	setTimeout(function(){notifyD(stat, status_channel)}, 2 * 1000);
+	setTimeout(function(){notifyD(stat, status_channel)}, 6 * 1000);
 }
 
 
